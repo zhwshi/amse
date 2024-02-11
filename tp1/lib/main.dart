@@ -8,44 +8,49 @@ void main() {
 class MediaModel {
   final String name;
   final String autor;
-  final String date;
+  final String type;
+  final int order; 
   final String description;
   final String imgUrl;
 
   const MediaModel(
-    {required this.name, required this.autor, required this.date, required this.description,required this.imgUrl}
+    {required this.order, required this.name, required this.autor, required this.type, required this.description,required this.imgUrl}
   );
 }
 
 const film = [
   MediaModel(
+    order : 1,
     name: 'Inception',
     autor: 'Christopher Nolan',
-    date: '2010',
+    type: 'film',
     description:
         'Inception is a 2010 science fiction action film written and directed by Christopher Nolan.',
     imgUrl: 'assets/imgs/inception.jpg',
   ),
   MediaModel(
+    order : 2,
     name: 'The Shawshank Redemption',
     autor: 'Frank Darabont',
-    date: '1994',
+    type: 'film',
     description:
         'The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont.',
     imgUrl: 'assets/imgs/shawshank_redemption.jpg',
   ),
   MediaModel(
+    order : 3,
     name: 'The Godfather',
     autor: 'Francis Ford Coppola',
-    date: '1972',
+    type: 'film',
     description:
         'The Godfather is a 1972 American crime film directed by Francis Ford Coppola.',
     imgUrl: 'assets/imgs/godfather.jpg',
   ),
   MediaModel(
+    order : 4,
     name: 'Pulp Fiction',
     autor: 'Quentin Tarantino',
-    date: '1994',
+    type: 'film',
     description:
         'Pulp Fiction is a 1994 American neo-noir black comedy crime film written and directed by Quentin Tarantino.',
     imgUrl: 'assets/imgs/pulp_fiction.jpg',
@@ -54,33 +59,37 @@ const film = [
 
 const series = [
   MediaModel(
+    order : 1,
     name: 'Breaking Bad',
     autor: 'Vince Gilligan',
-    date: '2008-2013',
+    type: 'series',
     description:
         'Breaking Bad is an American neo-Western crime drama television series created and produced by Vince Gilligan.',
     imgUrl: 'assets/imgs/breaking_bad.jpg',
   ),
   MediaModel(
+    order : 2,
     name: 'Game of Thrones',
     autor: 'David Benioff, D. B. Weiss',
-    date: '2011-2019',
+    type: 'series',
     description:
         'Game of Thrones is an American fantasy drama television series created by David Benioff and D. B. Weiss.',
     imgUrl: 'assets/imgs/game_of_thrones.jpg',
   ),
   MediaModel(
+    order : 3,
     name: 'Stranger Things',
     autor: 'The Duffer Brothers',
-    date: '2016-present',
+    type: 'series',
     description:
         'Stranger Things is an American science fiction horror mystery-thriller streaming television series created by the Duffer Brothers.',
     imgUrl: 'assets/imgs/stranger_things.jpg',
   ),
   MediaModel(
+    order : 4,
     name: 'Friends',
     autor: 'David Crane, Marta Kauffman',
-    date: '1994-2004',
+    type: 'series',
     description:
         'Friends is an American television sitcom created by David Crane and Marta Kauffman.',
     imgUrl: 'assets/imgs/friends.jpg',
@@ -89,33 +98,37 @@ const series = [
 
 const musique = [
   MediaModel(
+    order : 1,
     name: 'Thriller',
     autor: 'Michael Jackson',
-    date: '1982',
+    type: 'musique',
     description:
         'Thriller is the sixth studio album by American singer Michael Jackson, released on November 30, 1982.',
     imgUrl: 'assets/imgs/thriller.jpg',
   ),
   MediaModel(
+    order : 2,
     name: 'Abbey Road',
     autor: 'The Beatles',
-    date: '1969',
+    type: 'musique',
     description:
         'Abbey Road is the eleventh studio album by the English rock band the Beatles, released on 26 September 1969.',
     imgUrl: 'assets/imgs/abbey_road.jpg',
   ),
   MediaModel(
+    order : 3,
     name: 'The Dark Side of the Moon',
     autor: 'Pink Floyd',
-    date: '1973',
+    type: 'musique',
     description:
         'The Dark Side of the Moon is the eighth studio album by the English rock band Pink Floyd.',
     imgUrl: 'assets/imgs/dark_side_of_the_moon.jpg',
   ),
   MediaModel(
+    order : 4,
     name: 'Back in Black',
     autor: 'AC/DC',
-    date: '1980',
+    type: 'musique',
     description:
         'Back in Black is the seventh studio album by Australian rock band AC/DC.',
     imgUrl: 'assets/imgs/back_in_black.jpg',
@@ -124,33 +137,37 @@ const musique = [
 
 const livre = [
   MediaModel(
+    order : 1,
     name: '1984',
     autor: 'George Orwell',
-    date: '1949',
+    type: 'livre',
     description:
         '1984 is a dystopian social science fiction novel by English novelist George Orwell.',
     imgUrl: 'assets/imgs/1984.jpg',
   ),
   MediaModel(
+    order : 2,
     name: 'To Kill a Mockingbird',
     autor: 'Harper Lee',
-    date: '1960',
+    type: 'livre',
     description:
         'To Kill a Mockingbird is a novel by Harper Lee published in 1960.',
     imgUrl: 'assets/imgs/to_kill_a_mockingbird.jpg',
   ),
   MediaModel(
+    order : 3,
     name: 'The Great Gatsby',
     autor: 'F. Scott Fitzgerald',
-    date: '1925',
+    type: 'livre',
     description:
         'The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald.',
     imgUrl: 'assets/imgs/great_gatsby.jpg',
   ),
   MediaModel(
+    order : 4,
     name: 'The Catcher in the Rye',
     autor: 'J. D. Salinger',
-    date: '1951',
+    type: 'livre',
     description:
         'The Catcher in the Rye is a novel by J. D. Salinger, partially published in serial form in 1945–1946 and as a novel in 1951.',
     imgUrl: 'assets/imgs/catcher_in_the_rye.jpg',
@@ -237,16 +254,42 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
 
 class MyAppState extends ChangeNotifier {
 
-  final List<MediaModel> favorites = [];
-
-  void addFavorite(current) {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
+  final List<MediaModel> favoritesfilms = [];
+  final List<MediaModel> favoritesseries = [];
+  final List<MediaModel> favoritesmusique = [];
+  final List<MediaModel> favoriteslivre = [];
+  void addFavoritefilm(current) {
+    if (favoritesfilms.contains(current)) {
+      favoritesfilms.remove(current);
     } else {
-      favorites.add(current);
+      favoritesfilms.add(current);
     }
     notifyListeners();
   }
+  void addFavoriteseries(current){
+    if (favoritesseries.contains(current)) {
+      favoritesseries.remove(current);
+    } else {
+      favoritesseries.add(current);
+    }
+    notifyListeners();
+  }
+  void addFavoritemusique(current){
+    if (favoritesmusique.contains(current)) {
+      favoritesmusique.remove(current);
+    } else {
+      favoritesmusique.add(current);
+    }
+    notifyListeners();
+  }
+  void addFavoritelivre(current){
+    if (favoriteslivre.contains(current)) {
+      favoriteslivre.remove(current);
+    } else {
+      favoriteslivre.add(current);
+    }
+    notifyListeners();
+}
 }
 
 class PresentationPage extends StatelessWidget {
@@ -273,26 +316,9 @@ class PresentationPage extends StatelessWidget {
             'assets/imgs/med.jpg' // Ajoutez l'image de présentation
           ),
           SizedBox(height: 16),
-          ParcourirButton(),
+         
         ],
       ),
-    );
-  }
-}
-
-class ParcourirButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MediaPage(),
-          ),
-        );
-      },
-      child: Text('Parcourir'),
     );
   }
 }
@@ -303,7 +329,8 @@ class FavoritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    if (appState.favorites.isEmpty) {
+    if (appState.favoritesfilms.isEmpty && appState.favoritesseries.isEmpty
+    && appState.favoritesmusique.isEmpty && appState.favoriteslivre.isEmpty) {
       return Center(
         child: Text('No favorites yet.'),
       );
@@ -315,8 +342,15 @@ class FavoritesPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          for (var i=0; i<appState.favorites.length; i++)
-            MediaListButton(appState.favorites,i),
+          
+          for (var i=0; i<appState.favoritesfilms.length; i++)
+            MediaListFavButton(film,appState.favoritesfilms[i].order -1),
+          for (var i=0; i<appState.favoritesseries.length; i++)
+            MediaListFavButton(series,appState.favoritesseries[i].order -1),
+          for (var i=0; i<appState.favoritesmusique.length; i++)
+            MediaListFavButton(musique,appState.favoritesmusique[i].order -1),
+          for (var i=0; i<appState.favoriteslivre.length; i++)
+            MediaListFavButton(livre,appState.favoriteslivre[i].order -1),
         ],
       ),
     );
@@ -428,12 +462,34 @@ class MediaDescriptionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     IconData icon;
-    if (appState.favorites.contains(mediaList[indice])) {
+    if (mediaList == film){
+      if (appState.favoritesfilms.contains(mediaList[indice])) {
       icon = Icons.favorite;
     } else {
       icon = Icons.favorite_border;
     }
-
+    } 
+    else if (mediaList == series){
+      if (appState.favoritesseries.contains(mediaList[indice])) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+    }
+    else if (mediaList == musique){
+      if (appState.favoritesmusique.contains(mediaList[indice])) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+    }
+    else{
+      if (appState.favoriteslivre.contains(mediaList[indice])) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(mediaList[indice].name),
@@ -444,7 +500,7 @@ class MediaDescriptionPage extends StatelessWidget {
           children: [
             // Affichez l'image à partir du fichier
             //Image.network(film.elementAt(indice).imgUrl),
-            Text('Date : ${mediaList[indice].date}'),
+            Text('Type : ${mediaList[indice].type}'),
             SizedBox(height: 16),
             Text('Auteur : ${mediaList[indice].autor}'),
             SizedBox(height: 16),
@@ -452,7 +508,111 @@ class MediaDescriptionPage extends StatelessWidget {
             SizedBox(height: 16),
             ElevatedButton.icon(
                 onPressed: () {
-                  appState.addFavorite(mediaList[indice]);
+                  if (mediaList == film){
+                  appState.addFavoritefilm(mediaList[indice]);}
+                  else if (mediaList == series){
+                  appState.addFavoriteseries(mediaList[indice]);}
+                  else if (mediaList == musique){
+                  appState.addFavoritemusique(mediaList[indice]);}
+                  else if (mediaList == livre){
+                  appState.addFavoritelivre(mediaList[indice]);}
+                },
+                icon: Icon(icon),
+                label: Text('Like'),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MediaListFavButton extends StatelessWidget {
+  final List<MediaModel> mediaListFav;
+  final int indiceFav;
+
+  MediaListFavButton(this.mediaListFav, this.indiceFav);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MediaDescriptionFavPage(mediaListFav, indiceFav),
+          ),
+        );
+      },
+      child: Text(mediaListFav[indiceFav].name),
+    );
+  }
+}
+
+class MediaDescriptionFavPage extends StatelessWidget {
+  final List<MediaModel> mediaListFav;
+  final int indiceFav;
+
+  MediaDescriptionFavPage(this.mediaListFav, this.indiceFav);
+
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    IconData icon;
+    if (mediaListFav == film){
+      if (appState.favoritesfilms.contains(mediaListFav[indiceFav])) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+    } 
+    else if (mediaListFav == series){
+      if (appState.favoritesseries.contains(mediaListFav[indiceFav])) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+    }
+    else if (mediaListFav == musique){
+      if (appState.favoritesmusique.contains(mediaListFav[indiceFav])) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+    }
+    else{
+      if (appState.favoriteslivre.contains(mediaListFav[indiceFav])) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+    }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(mediaListFav[indiceFav].name),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Affichez l'image à partir du fichier
+            //Image.network(film.elementAt(indice).imgUrl),
+            Text('Type : ${mediaListFav[indiceFav].type}'),
+            SizedBox(height: 16),
+            Text('Auteur : ${mediaListFav[indiceFav].autor}'),
+            SizedBox(height: 16),
+            Text('Description : ${mediaListFav[indiceFav].description}'),
+            SizedBox(height: 16),
+            ElevatedButton.icon(
+                onPressed: () {
+                  if (mediaListFav == film){
+                  appState.addFavoritefilm(mediaListFav[indiceFav]);}
+                  else if (mediaListFav == series){
+                  appState.addFavoriteseries(mediaListFav[indiceFav]);}
+                  else if (mediaListFav == musique){
+                  appState.addFavoritemusique(mediaListFav[indiceFav]);}
+                  else if (mediaListFav == livre){
+                  appState.addFavoritelivre(mediaListFav[indiceFav]);}
                 },
                 icon: Icon(icon),
                 label: Text('Like'),
