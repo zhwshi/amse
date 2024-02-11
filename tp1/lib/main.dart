@@ -1,4 +1,3 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +24,7 @@ const film = [
     date: '2010',
     description:
         'Inception is a 2010 science fiction action film written and directed by Christopher Nolan.',
-    imgUrl: 'assets/imgs/inception.png',
+    imgUrl: 'assets/imgs/inception.jpg',
   ),
   MediaModel(
     name: 'The Shawshank Redemption',
@@ -33,7 +32,7 @@ const film = [
     date: '1994',
     description:
         'The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont.',
-    imgUrl: 'assets/imgs/shawshank.jpg',
+    imgUrl: 'assets/imgs/shawshank_redemption.jpg',
   ),
   MediaModel(
     name: 'The Godfather',
@@ -103,7 +102,7 @@ const musique = [
     date: '1969',
     description:
         'Abbey Road is the eleventh studio album by the English rock band the Beatles, released on 26 September 1969.',
-    imgUrl: 'assets/imgs/abey_road.png',
+    imgUrl: 'assets/imgs/abbey_road.jpg',
   ),
   MediaModel(
     name: 'The Dark Side of the Moon',
@@ -111,7 +110,7 @@ const musique = [
     date: '1973',
     description:
         'The Dark Side of the Moon is the eighth studio album by the English rock band Pink Floyd.',
-    imgUrl: 'assets/imgs/dark_side_of_the_moon.png',
+    imgUrl: 'assets/imgs/dark_side_of_the_moon.jpg',
   ),
   MediaModel(
     name: 'Back in Black',
@@ -146,7 +145,7 @@ const livre = [
     date: '1925',
     description:
         'The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald.',
-    imgUrl: 'assets/imgs/the_great_gatsby.jpg',
+    imgUrl: 'assets/imgs/great_gatsby.jpg',
   ),
   MediaModel(
     name: 'The Catcher in the Rye',
@@ -271,7 +270,7 @@ class PresentationPage extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Image.network(
-            'assets/imgs/med.png' // Ajoutez l'image de présentation
+            'assets/imgs/med.jpg' // Ajoutez l'image de présentation
           ),
           SizedBox(height: 16),
           ParcourirButton(),
@@ -313,14 +312,6 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Favorites"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.of(context).pushNamed('/');
-            },
-          ),
-        ],
       ),
       body: ListView(
         children: [
@@ -338,31 +329,23 @@ class MediaPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Media'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.of(context).pushNamed('/');
-            },
-          ),
-        ],
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
-          MediaButton('Films', film),
+          MediaButton('Films',film),
           SizedBox(height: 16),
-          MediaButton('Series', series),
+          MediaButton('Series',series),
           SizedBox(height: 16),
           MediaButton('Musique', musique),
           SizedBox(height: 16),
           MediaButton('Livre', livre),
         ],
+        
       ),
     );
   }
 }
-
 
 class MediaButton extends StatelessWidget {
   final String media;
@@ -398,18 +381,8 @@ class MediaList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(mediatype),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.of(context).pushNamed('/');
-            },
-          ),
-        ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           for (var i = 0; i < mediaList.length; i++)
             Padding(
@@ -430,7 +403,7 @@ class MediaListButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
+    return ElevatedButton(
       onPressed: () {
         Navigator.push(
           context,
@@ -439,12 +412,7 @@ class MediaListButton extends StatelessWidget {
           ),
         );
       },
-      icon: SizedBox(
-        width: 50,
-        height: 50,
-        child: Image.network(mediaList[indice].imgUrl),
-      ),
-      label: Text(mediaList[indice].name),
+      child: Text(mediaList[indice].name),
     );
   }
 }
@@ -469,26 +437,18 @@ class MediaDescriptionPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(mediaList[indice].name),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.of(context).pushNamed('/');
-            },
-          ),
-        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Affichez l'image à partir du fichier
-            Image.network(mediaList[indice].imgUrl),
-            Text('Date : ${mediaList[indice].date}', style: TextStyle(fontSize: 20)),
+            //Image.network(film.elementAt(indice).imgUrl),
+            Text('Date : ${mediaList[indice].date}'),
             SizedBox(height: 16),
-            Text('Auteur : ${mediaList[indice].autor}', style: TextStyle(fontSize: 20)),
+            Text('Auteur : ${mediaList[indice].autor}'),
             SizedBox(height: 16),
-            Text('Description : ${mediaList[indice].description}', style: TextStyle(fontSize: 20)),
+            Text('Description : ${mediaList[indice].description}'),
             SizedBox(height: 16),
             ElevatedButton.icon(
                 onPressed: () {
