@@ -18,150 +18,152 @@ class MediaModel {
   );
 }
 
-const film = [
+
+
+const List<MediaModel> film = [
   MediaModel(
-    order : 1,
+    order: 1,
     name: 'Inception',
     autor: 'Christopher Nolan',
     type: 'film',
     description:
         'Inception is a 2010 science fiction action film written and directed by Christopher Nolan.',
-    imgUrl: 'assets/imgs/inception.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 2,
+    order: 2,
     name: 'The Shawshank Redemption',
     autor: 'Frank Darabont',
     type: 'film',
     description:
         'The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont.',
-    imgUrl: 'assets/imgs/shawshank_redemption.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 3,
+    order: 3,
     name: 'The Godfather',
     autor: 'Francis Ford Coppola',
     type: 'film',
     description:
         'The Godfather is a 1972 American crime film directed by Francis Ford Coppola.',
-    imgUrl: 'assets/imgs/godfather.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 4,
-    name: 'Pulp Fiction',
-    autor: 'Quentin Tarantino',
+    order: 4,
+    name: 'The Lord of the Rings: The Return of the King',
+    autor: 'Peter Jackson',
     type: 'film',
     description:
-        'Pulp Fiction is a 1994 American neo-noir black comedy crime film written and directed by Quentin Tarantino.',
-    imgUrl: 'assets/imgs/pulp_fiction.jpg',
+        'The Lord of the Rings: The Return of the King is a 2003 epic fantasy adventure film directed by Peter Jackson.',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
 ];
 
-const series = [
+const List<MediaModel> series = [
   MediaModel(
-    order : 1,
+    order: 1,
     name: 'Breaking Bad',
     autor: 'Vince Gilligan',
     type: 'series',
     description:
         'Breaking Bad is an American neo-Western crime drama television series created and produced by Vince Gilligan.',
-    imgUrl: 'assets/imgs/breaking_bad.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 2,
+    order: 2,
     name: 'Game of Thrones',
     autor: 'David Benioff, D. B. Weiss',
     type: 'series',
     description:
         'Game of Thrones is an American fantasy drama television series created by David Benioff and D. B. Weiss.',
-    imgUrl: 'assets/imgs/game_of_thrones.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 3,
-    name: 'Stranger Things',
-    autor: 'The Duffer Brothers',
-    type: 'series',
-    description:
-        'Stranger Things is an American science fiction horror mystery-thriller streaming television series created by the Duffer Brothers.',
-    imgUrl: 'assets/imgs/stranger_things.jpg',
-  ),
-  MediaModel(
-    order : 4,
+    order: 3,
     name: 'Friends',
     autor: 'David Crane, Marta Kauffman',
     type: 'series',
     description:
         'Friends is an American television sitcom created by David Crane and Marta Kauffman.',
-    imgUrl: 'assets/imgs/friends.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
+  ),
+  MediaModel(
+    order: 4,
+    name: 'Breaking Bad',
+    autor: 'Vince Gilligan',
+    type: 'series',
+    description:
+        'Breaking Bad is an American neo-Western crime drama television series created and produced by Vince Gilligan.',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
 ];
 
-const musique = [
+const List<MediaModel> musique = [
   MediaModel(
-    order : 1,
+    order: 1,
     name: 'Thriller',
     autor: 'Michael Jackson',
     type: 'musique',
     description:
         'Thriller is the sixth studio album by American singer Michael Jackson, released on November 30, 1982.',
-    imgUrl: 'assets/imgs/thriller.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 2,
+    order: 2,
     name: 'Abbey Road',
     autor: 'The Beatles',
     type: 'musique',
     description:
         'Abbey Road is the eleventh studio album by the English rock band the Beatles, released on 26 September 1969.',
-    imgUrl: 'assets/imgs/abbey_road.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 3,
-    name: 'The Dark Side of the Moon',
-    autor: 'Pink Floyd',
-    type: 'musique',
-    description:
-        'The Dark Side of the Moon is the eighth studio album by the English rock band Pink Floyd.',
-    imgUrl: 'assets/imgs/dark_side_of_the_moon.jpg',
-  ),
-  MediaModel(
-    order : 4,
+    order: 3,
     name: 'Back in Black',
     autor: 'AC/DC',
     type: 'musique',
     description:
         'Back in Black is the seventh studio album by Australian rock band AC/DC.',
-    imgUrl: 'assets/imgs/back_in_black.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
+  ),
+  MediaModel(
+    order: 4,
+    name: 'Thriller',
+    autor: 'Michael Jackson',
+    type: 'musique',
+    description:
+        'Thriller is the sixth studio album by American singer Michael Jackson, released on November 30, 1982.',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
 ];
 
-const livre = [
+const List<MediaModel> livre = [
   MediaModel(
-    order : 1,
+    order: 1,
     name: '1984',
     autor: 'George Orwell',
     type: 'livre',
     description:
         '1984 is a dystopian social science fiction novel by English novelist George Orwell.',
-    imgUrl: 'assets/imgs/1984.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 2,
+    order: 2,
     name: 'To Kill a Mockingbird',
     autor: 'Harper Lee',
     type: 'livre',
     description:
         'To Kill a Mockingbird is a novel by Harper Lee published in 1960.',
-    imgUrl: 'assets/imgs/to_kill_a_mockingbird.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
-    order : 3,
+    order: 3,
     name: 'The Great Gatsby',
     autor: 'F. Scott Fitzgerald',
     type: 'livre',
     description:
         'The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald.',
-    imgUrl: 'assets/imgs/great_gatsby.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
   MediaModel(
     order : 4,
@@ -170,7 +172,7 @@ const livre = [
     type: 'livre',
     description:
         'The Catcher in the Rye is a novel by J. D. Salinger, partially published in serial form in 1945–1946 and as a novel in 1951.',
-    imgUrl: 'assets/imgs/catcher_in_the_rye.jpg',
+    imgUrl: 'assets/imgs/godfather.png',
   ),
 ];
 
@@ -499,7 +501,7 @@ class MediaDescriptionPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Affichez l'image à partir du fichier
-            //Image.network(film.elementAt(indice).imgUrl),
+            Image.network(film.elementAt(indice).imgUrl),
             Text('Type : ${mediaList[indice].type}'),
             SizedBox(height: 16),
             Text('Auteur : ${mediaList[indice].autor}'),
@@ -596,7 +598,7 @@ class MediaDescriptionFavPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Affichez l'image à partir du fichier
-            //Image.network(film.elementAt(indice).imgUrl),
+            Image.network(film.elementAt(indiceFav).imgUrl),
             Text('Type : ${mediaListFav[indiceFav].type}'),
             SizedBox(height: 16),
             Text('Auteur : ${mediaListFav[indiceFav].autor}'),
