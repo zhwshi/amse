@@ -1,20 +1,21 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
-import 'package:tp2/jeu/homepage.dart';
-import 'package:tp2/main.dart';
-import 'package:tp2/jeu/anotherpage.dart';
 
-class Exercice7Page extends StatefulWidget {
-  const Exercice7Page({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:tp2/jeu/Exercise7Page.dart';
+import 'package:tp2/main.dart';
+import 'package:tp2/jeu/homepage.dart';
+
+class AnotherPage extends StatefulWidget {
+  const AnotherPage({Key? key});
 
   @override
-  _Exercice7PageState createState() => _Exercice7PageState();
+  _AnotherPageState createState() => _AnotherPageState();
 }
 
-class _Exercice7PageState extends State<Exercice7Page> {
+class _AnotherPageState extends State<AnotherPage> {
   late List<Tile_complet?> tile_1;
   late int emptyIndex;
-  int _stepCount = 50;
+  int _stepCount = 80;
 
   @override
   void initState() {
@@ -34,9 +35,16 @@ class _Exercice7PageState extends State<Exercice7Page> {
         Tile_complet(imageURL: 'assets/images/6.png'),
         Tile_complet(imageURL: 'assets/images/7.png'),
         Tile_complet(imageURL: 'assets/images/8.png'),
+        Tile_complet(imageURL: 'assets/images/9.png'),
+        Tile_complet(imageURL: 'assets/images/10.png'),
+        Tile_complet(imageURL: 'assets/images/11.png'),
+        Tile_complet(imageURL: 'assets/images/12.png'),
+        Tile_complet(imageURL: 'assets/images/13.png'),
+        Tile_complet(imageURL: 'assets/images/14.png'),
+        Tile_complet(imageURL: 'assets/images/15.png'),
         null, // 空白拼图块，使用 null 代替
       ];
-      emptyIndex = 8; // 空白拼图块的索引
+      emptyIndex = 15; // 空白拼图块的索引
 
       // 打乱拼图
       shufflePuzzle();
@@ -74,7 +82,21 @@ class _Exercice7PageState extends State<Exercice7Page> {
       }
     }
   }
-  
+
+  bool _isAdjacentToEmpty(int index) {
+    return (index ~/ 4 == emptyIndex ~/ 4 && (index - emptyIndex).abs() == 1) ||
+        (index % 4 == emptyIndex % 4 && (index - emptyIndex).abs() == 4);
+  }
+
+  bool _isPuzzleCompleted() {
+    for (int i = 0; i < tile_1.length - 1; i++) {
+      if (tile_1[i] == null || tile_1[i]!.imageURL != 'assets/images/${i + 1}.png') {
+        return false;
+      }
+    }
+    return true;
+  }
+
   void _showFailureDialog() {
     showDialog(
       context: context,
@@ -85,8 +107,7 @@ class _Exercice7PageState extends State<Exercice7Page> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Exercice7Page()));
+                Navigator.of(context).pop(); // 关闭对话框
               },
               child: const Text('OK'),
             ),
@@ -94,20 +115,6 @@ class _Exercice7PageState extends State<Exercice7Page> {
         );
       },
     );
-  }
-
-  bool _isAdjacentToEmpty(int index) {
-    return (index ~/ 3 == emptyIndex ~/ 3 && (index - emptyIndex).abs() == 1) ||
-        (index % 3 == emptyIndex % 3 && (index - emptyIndex).abs() == 3);
-  }
-
-  bool _isPuzzleCompleted() {
-    for (int i = 0; i < tile_1.length - 1; i++) {
-      if (tile_1[i] == null || tile_1[i]!.imageURL != 'assets/images/${i + 1}.png') {
-        return false;
-      }
-    }
-    return true;
   }
 
   void _showSuccessDialog() {
@@ -129,13 +136,10 @@ class _Exercice7PageState extends State<Exercice7Page> {
       },
     );
   }
-
-  void _navigateToAnotherPage() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AnotherPage()));
+void _navigateToAnotherPage() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Exercice7Page()));
   }
-
   @override
-  
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -146,7 +150,7 @@ class _Exercice7PageState extends State<Exercice7Page> {
         height: 500,
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+            crossAxisCount: 4,
             mainAxisSpacing: 10.0,
             crossAxisSpacing: 10.0,
             childAspectRatio: 1.0,
@@ -158,7 +162,7 @@ class _Exercice7PageState extends State<Exercice7Page> {
                 swapTiles(index);
               },
               child: Container(
-                color: const Color.fromARGB(255, 255, 255, 255),
+                color: Colors.grey[200],
                 child: Center(
                   child: tile_1[index] != null
                       ? tile_1[index]!.croppedImageTile()
@@ -169,7 +173,7 @@ class _Exercice7PageState extends State<Exercice7Page> {
           },
         ),
       ),
-      floatingActionButton: Column(
+    floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -186,7 +190,7 @@ class _Exercice7PageState extends State<Exercice7Page> {
           FloatingActionButton(
             onPressed: _navigateToAnotherPage,
             child: const Tooltip(
-              message: 'difficult mode',
+              message: 'easy mode',
               child: Icon(Icons.arrow_forward),
             ),
           ),

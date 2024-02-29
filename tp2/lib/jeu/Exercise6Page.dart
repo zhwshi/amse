@@ -24,6 +24,13 @@ class _Exercice6PageState extends State<Exercice6Page> {
   ];
 
   void swapTiles(int index) {
+    if (index == 0){
+      final temp = tiles[0];
+      setState(() {
+        tiles[0] = tiles[8];
+        tiles[8] = temp;
+      });
+    }
     if (index > 0 && index < tiles.length) {
       final temp = tiles[index];
       setState(() {
@@ -37,7 +44,7 @@ class _Exercice6PageState extends State<Exercice6Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Exercice 6,click and move(simple)'),
+        title: const Text('exo6,change with the left ones'),
       ),
       body: SizedBox(
         width: 500,
@@ -56,7 +63,7 @@ class _Exercice6PageState extends State<Exercice6Page> {
                 swapTiles(index);
               },
               child: Container(
-                color: Colors.blue,
+                color: Color.fromARGB(255, 255, 0, 17),
                 child: Center(
                   child: tiles[index].croppedImageTile(),
                 ),

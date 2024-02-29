@@ -6,11 +6,13 @@ A new Flutter project.
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+tips:
+L’exercice 5, l’exercice 6, exercise 7 sont, parfois ils se bloquent, parfois non, mais ce qui est étrange, c’est que si vous appuyez d’abord sur l’exercice 4, la plupart du temps, ils ne restent pas bloqués.
+(le code a été séparé par moi, il n’y a pas de code commun)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+why i choose number rather than picture?
+for the final game, i choose to use the number rather than true picture because i think i have already show how to separate the image in exercise5 ; and the number is better to configure while testing my code.
+
+what is my game work?
+
