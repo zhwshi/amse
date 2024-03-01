@@ -14,18 +14,18 @@ L’exercice 5, l’exercice 6, exercise 7 sont, parfois ils se bloquent, parfoi
 
 brief intro:
 
-<Adjust puzzle size> <Choose difficulty>
+Adjust puzzle size> Choose difficulty
 by choosing hard mode and easy mode
 
-<Choose an image>
+Choose an image>
 we can use the button to choose picture or image
 
-<Undo the last move played>
+Undo the last move played>
 with the button undo
 
-<Indicate when the player wins>
+Indicate when the player wins
 
-<Display the game board>
+Display the game board>
 with a count board
 
-<a simple homepage>
+a simple homepage>
