@@ -21,44 +21,12 @@ class MyApp extends StatelessWidget {
 
 
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Exercice 6'),
-//       ),
-//       body: SizedBox(
-//         width: 500,
-//         height: 500,
-//         child: GridView.builder(
-//           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//             crossAxisCount: 3,
-//             mainAxisSpacing: 10.0,
-//             crossAxisSpacing: 10.0,
-//             childAspectRatio: 1.0,
-//           ),
-//           itemCount: tiles.length,
-//           itemBuilder: (BuildContext context, int index) {
-//             return InkWell(
-//               onTap: () => swapTiles(index),
-//               child: TileWidget(tiles[index]),
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
-
-  
-// }
-
-
-
 
 
 // ignore: camel_case_types
 class Tile_complet {
   String imageURL;
+
 
   Tile_complet({required this.imageURL});
 
@@ -99,6 +67,34 @@ class Tile {
   
   static void randomColor(Alignment alignment) {}
 }
+
+class Tile_ {
+  String imageURL;
+  Alignment alignment;
+
+  Tile_({required this.imageURL, required this.alignment});
+  
+  get position => null;
+  
+  get color => null;
+
+  Widget croppedImageTile() {
+    return FittedBox(
+      fit: BoxFit.fill,
+      child: ClipRect(
+        child: Align(
+          alignment: alignment,
+          widthFactor: 0.25,
+          heightFactor: 0.25,
+          child: Image.asset(imageURL),
+        ),
+      ),
+    );
+  }
+  
+  static void randomColor(Alignment alignment) {}
+}
+
 // Ajoutez d'autres classes de page pour les autres exercices si nécessaire
 
 class MyHomePage extends StatefulWidget {

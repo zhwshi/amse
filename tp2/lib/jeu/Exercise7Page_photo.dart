@@ -3,41 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:tp2/jeu/homepage.dart';
 import 'package:tp2/main.dart';
 import 'package:tp2/jeu/anotherpage.dart';
-import 'package:tp2/jeu/Exercise7Page_photo.dart';
+import 'package:tp2/jeu/Exercise7Page.dart';
 
-class Exercice7Page extends StatefulWidget {
-  const Exercice7Page({Key? key}) : super(key: key);
+class Exercice7Page_photo extends StatefulWidget {
+  const Exercice7Page_photo({Key? key}) : super(key: key);
 
   @override
   _Exercice7PageState createState() => _Exercice7PageState();
 }
 
-class _Exercice7PageState extends State<Exercice7Page> {
-  late List<Tile_complet?> tile_1;
+class _Exercice7PageState extends State<Exercice7Page_photo> {
+  late List<Tile?> tile_1;
   late int emptyIndex;
   int _stepCount = 50;
-  List<List<Tile_complet?>> previousStates = [];
+  List<List<Tile?>> previousStates = [];
 
   @override
   void initState() {
     super.initState();
     resetPuzzle(); // 初始化拼图
   }
-  
+
   // 初始化拼图
   void resetPuzzle() {
     setState(() {
-      tile_1 = [
-        Tile_complet(imageURL: 'assets/images/1.png'),
-        Tile_complet(imageURL: 'assets/images/2.png'),
-        Tile_complet(imageURL: 'assets/images/3.png'),
-        Tile_complet(imageURL: 'assets/images/4.png'),
-        Tile_complet(imageURL: 'assets/images/5.png'),
-        Tile_complet(imageURL: 'assets/images/6.png'),
-        Tile_complet(imageURL: 'assets/images/7.png'),
-        Tile_complet(imageURL: 'assets/images/8.png'),
-        null, // 空白拼图块，使用 null 代替
-      ];
+       tile_1 = [
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(-1, -1)),
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(0, -1)),
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(1, -1)),
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(-1, 0)),
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(0, 0)),
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(1, 0)),
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(-1, 1)),
+      Tile(imageURL: 'assets/images/example_image.jpg', alignment: const Alignment(0, 1)),
+      Tile(imageURL: 'assets/images/b.png', alignment: const Alignment(0, 0)),
+];
       emptyIndex = 8; // 空白拼图块的索引
       _stepCount = 50;
       previousStates.clear(); // 清除之前的状态
@@ -64,7 +64,7 @@ class _Exercice7PageState extends State<Exercice7Page> {
   void swapTiles(int index) {
     if (_isAdjacentToEmpty(index)) {
       setState(() {
-        previousStates.add(List<Tile_complet?>.from(tile_1)); // 将当前状态添加到历史状态列表
+        previousStates.add(List<Tile?>.from(tile_1)); // 将当前状态添加到历史状态列表
         final temp = tile_1[index];
         tile_1[index] = tile_1[emptyIndex];
         tile_1[emptyIndex] = temp;
@@ -104,7 +104,7 @@ class _Exercice7PageState extends State<Exercice7Page> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Exercice7Page()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Exercice7Page_photo()));
               },
               child: const Text('OK'),
             ),
@@ -230,11 +230,11 @@ class _Exercice7PageState extends State<Exercice7Page> {
     const SizedBox(height: 16),
     FloatingActionButton(
       onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Exercice7Page_photo())); // 导航到另一个页面
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Exercice7Page())); // 导航到另一个页面
       },
       child: const Tooltip(
-        message: 'Go to photo Page',
-        child: Icon(Icons.photo),
+        message: 'Go to number Page',
+        child: Icon(Icons.numbers),
       ),
     ),
   ],

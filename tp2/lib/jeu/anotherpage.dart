@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tp2/jeu/Exercise7Page.dart';
 import 'package:tp2/main.dart';
 import 'package:tp2/jeu/homepage.dart';
+import 'package:tp2/jeu/anotherpage_photo.dart';
 
 class AnotherPage extends StatefulWidget {
   const AnotherPage({Key? key});
@@ -16,6 +17,7 @@ class _AnotherPageState extends State<AnotherPage> {
   late List<Tile_complet?> tile_1;
   late int emptyIndex;
   int _stepCount = 80;
+  List<List<Tile_complet?>> previousStates = [];
 
   @override
   void initState() {
@@ -45,6 +47,8 @@ class _AnotherPageState extends State<AnotherPage> {
         null, // 空白拼图块，使用 null 代替
       ];
       emptyIndex = 15; // 空白拼图块的索引
+      _stepCount = 100;
+      previousStates.clear(); 
 
       // 打乱拼图
       shufflePuzzle();
@@ -54,7 +58,7 @@ class _AnotherPageState extends State<AnotherPage> {
   // 打乱拼图
   void shufflePuzzle() {
     final random = Random();
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 5000; i++) {
       final randomIndex = random.nextInt(tile_1.length - 1);
       if (_isAdjacentToEmpty(randomIndex)) {
         final temp = tile_1[randomIndex];
@@ -64,24 +68,34 @@ class _AnotherPageState extends State<AnotherPage> {
       }
     }
   }
-
-  void swapTiles(int index) {
-    if (_isAdjacentToEmpty(index)) {
+  void undoLastMove() {
+    if (previousStates.isNotEmpty) {
       setState(() {
-        final temp = tile_1[index];
-        tile_1[index] = tile_1[emptyIndex];
-        tile_1[emptyIndex] = temp;
-        emptyIndex = index; // 更新空白拼图块的索引
-        _stepCount--;
-        if (_stepCount <= 0) {
-          _showFailureDialog(); // 当步数为零或负数时触发失败对话框
-        }
+        tile_1 = previousStates.removeLast(); // 恢复到上一个状态
+        emptyIndex = tile_1.indexWhere((tile) => tile == null); // 更新空白拼图块的索引
+        _stepCount++; // 恢复步数
       });
-      if (_isPuzzleCompleted()) {
-        _showSuccessDialog();
-      }
     }
   }
+
+ void swapTiles(int index) {
+  if (_isAdjacentToEmpty(index)) {
+    setState(() {
+      previousStates.add(List<Tile_complet?>.from(tile_1)); // 将当前状态添加到历史状态列表
+      final temp = tile_1[index];
+      tile_1[index] = tile_1[emptyIndex];
+      tile_1[emptyIndex] = temp;
+      emptyIndex = index; // 更新空白拼图块的索引
+      _stepCount--;
+      if (_stepCount <= 0) {
+        _showFailureDialog(); // 当步数为零或负数时触发失败对话框
+      }
+    });
+    if (_isPuzzleCompleted()) {
+      _showSuccessDialog();
+    }
+  }
+}
 
   bool _isAdjacentToEmpty(int index) {
     return (index ~/ 4 == emptyIndex ~/ 4 && (index - emptyIndex).abs() == 1) ||
@@ -108,6 +122,7 @@ class _AnotherPageState extends State<AnotherPage> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // 关闭对话框
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AnotherPage()));
               },
               child: const Text('OK'),
             ),
@@ -123,7 +138,7 @@ class _AnotherPageState extends State<AnotherPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Congratulations!'),
-          content: const Text('You solved the puzzle!'),
+          content: const Text('You solved the puzzle! tap reset to do a new one!'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -174,38 +189,56 @@ void _navigateToAnotherPage() {
         ),
       ),
     floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              resetPuzzle(); // 重置拼图
-            },
-            child: const Tooltip(
-              message: 'reset!',
-              child: Icon(Icons.shuffle),
-            ),
-          ),
-          const SizedBox(height: 16),
-          FloatingActionButton(
-            onPressed: _navigateToAnotherPage,
-            child: const Tooltip(
-              message: 'easy mode',
-              child: Icon(Icons.arrow_forward),
-            ),
-          ),
-          const SizedBox(height: 16),
-          FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
-            },
-            child: const Tooltip(
-              message: 'Go to Puzzle Page',
-              child: Icon(Icons.games),
-            ),
-          ),
-        ],
+  mainAxisAlignment: MainAxisAlignment.end,
+  crossAxisAlignment: CrossAxisAlignment.end,
+  children: [
+    FloatingActionButton(
+      onPressed: () {
+        resetPuzzle(); // 重置拼图
+      },
+      child: const Tooltip(
+        message: 'reset!',
+        child: Icon(Icons.shuffle),
       ),
+    ),
+    const SizedBox(height: 16),
+    FloatingActionButton(
+      onPressed: _navigateToAnotherPage,
+      child: const Tooltip(
+        message: 'easy mode',
+        child: Icon(Icons.arrow_forward),
+      ),
+    ),
+    const SizedBox(height: 16),
+    FloatingActionButton(
+      onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => home()));
+      },
+      child: const Tooltip(
+        message: 'Go to Puzzle Page',
+        child: Icon(Icons.games),
+      ),
+    ),
+    const SizedBox(height: 16),
+    FloatingActionButton(
+      onPressed: undoLastMove, // 调用撤销上一步操作的方法
+      child: const Tooltip(
+        message: 'Undo last move',
+        child: Icon(Icons.undo),
+      ),
+    ),
+    const SizedBox(height: 16),
+    FloatingActionButton(
+      onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => AnotherPage_photo())); // 导航到另一个页面
+      },
+      child: const Tooltip(
+        message: 'Go to photo Page',
+        child: Icon(Icons.photo),
+      ),
+    ),
+  ],
+),
     );
   }
 }
